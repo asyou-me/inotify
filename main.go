@@ -42,7 +42,7 @@ func main() {
 	defer watcher.Close()
 
 	go func() {
-		var last_time int64 = 0
+		var last_time int64 = time.Now().Unix()
 		var run_num int64 = 0
 		var run_cmd *exec.Cmd
 		go run(shell)

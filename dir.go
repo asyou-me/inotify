@@ -8,8 +8,18 @@ import (
 )
 
 func GetDirs(path string) (*[]string, error) {
-	fi, err := os.Open(path + "/.inotify")
 	dir := make([]string, 0, 30)
+	var err error
+
+	if path == "" {
+		path, err = filepath.Abs(filepath.Dir(os.Args[0]))
+		if err != nil {
+			return &dir, err
+		}
+	}
+
+	fi, err := os.Open(path + "/.inotify")
+
 	config_dirs := make([]string, 0, 30)
 	if err != nil {
 		return &dir, err
