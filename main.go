@@ -23,8 +23,14 @@ func Usage() {
 func main() {
 	path := flag.String("path", "", "path like /tmp")
 	shell := flag.String("shell", "", "a shell file")
+	h := flag.Bool("h", false, "help")
 
 	flag.Parse()
+
+	if *h == true {
+		Usage()
+		os.Exit(0)
+	}
 
 	*path = strings.TrimRight(*path, "/")
 
