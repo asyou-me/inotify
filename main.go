@@ -79,7 +79,7 @@ func run(shell *string) {
 	cmd := exec.Command("sh", *shell)
 	cmdReader, err := cmd.StdoutPipe()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error creating StdoutPipe for Cmd", err)
+		fmt.Println("\033[31;1m Error creating StdoutPipe for Cmd", err)
 	}
 
 	scanner := bufio.NewScanner(cmdReader)
@@ -89,7 +89,14 @@ func run(shell *string) {
 		}
 	}()
 
-	cmd_chan <- cmd
-	cmd.Start()
-	cmd.Wait()
+	err = cmd.Start()
+	if err != nil {
+		fmt.Println("\033[31;1mError Start for Cmd", err)
+	} else {
+		cmd_chan <- cmd
+	}
+	err = cmd.Wait()
+	if err != nil {
+		fmt.Println("\033[31;1mError Wait for Cmd", err)
+	}
 }
