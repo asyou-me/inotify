@@ -29,21 +29,18 @@ func GetDirs(path string) (*[]string, error) {
 		WalkDir(path+"/"+v, &dir)
 	}
 
-	dir = append(dir, "")
-	dir = append(dir, config_dirs...)
+	dir = append(dir, path)
 
 	return &dir, nil
 }
 
-//获取指定目录及所有子目录下的所有文件，可以匹配后缀过滤。
+//获取指定目录及所有子目录。
 func WalkDir(dirPth string, dirs *[]string) (err error) { //忽略后缀匹配的大小写
-	dir_real := *dirs
 	err = filepath.Walk(dirPth, func(filename string, fi os.FileInfo, err error) error { //遍历目录
-
 		if fi.IsDir() {
-			dir_real = append(dir_real, fi.Name())
+			*dirs = append(*dirs, filename)
 		}
-		return nil
+		return err
 	})
 	return err
 }

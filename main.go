@@ -65,7 +65,7 @@ func main() {
 	}()
 
 	for _, v := range *dirs {
-		err = watcher.Add(*path + "/" + v)
+		err = watcher.Add(v)
 		if err != nil {
 			Usage()
 			panic(err)
