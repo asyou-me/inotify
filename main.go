@@ -7,11 +7,11 @@ import (
 	"gopkg.in/fsnotify.v1"
 	"os"
 	"os/exec"
+	"os/signal"
 	"strings"
 	"time"
 )
 
-var done = make(chan bool)
 var cmd_chan = make(chan *exec.Cmd)
 
 func Usage() {
@@ -21,6 +21,9 @@ func Usage() {
 }
 
 func main() {
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt, os.Kill)
+
 	path := flag.String("path", "", "path like /tmp")
 	shell := flag.String("shell", "", "a shell file")
 	h := flag.Bool("h", false, "help")
@@ -78,7 +81,8 @@ func main() {
 		}
 	}
 
-	<-done
+	<-c
+	fmt.Println(" exit 0")
 }
 
 func run(shell *string) {
