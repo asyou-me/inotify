@@ -20,23 +20,25 @@ func GetDirs(path string) (*[]string, error) {
 
 	fi, err := os.Open(path + "/.inotify")
 
-	config_dirs := make([]string, 0, 30)
-	if err != nil {
-		return &dir, err
-	}
-	defer fi.Close()
-	fd, err := ioutil.ReadAll(fi)
-	if err != nil {
-		return &dir, err
-	}
-
-	if err = json.Unmarshal(fd, &config_dirs); err != nil {
+	if err == nil {
+		config_dirs := make([]string, 0, 30)
 		if err != nil {
 			return &dir, err
 		}
-	}
-	for _, v := range config_dirs {
-		WalkDir(path+"/"+v, &dir)
+		defer fi.Close()
+		fd, err := ioutil.ReadAll(fi)
+		if err != nil {
+			return &dir, err
+		}
+
+		if err = json.Unmarshal(fd, &config_dirs); err != nil {
+			if err != nil {
+				return &dir, err
+			}
+		}
+		for _, v := range config_dirs {
+			WalkDir(path+"/"+v, &dir)
+		}
 	}
 
 	dir = append(dir, path)

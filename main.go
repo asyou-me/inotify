@@ -40,13 +40,13 @@ func main() {
 	dirs, err := GetDirs(*path)
 	if err != nil {
 		Usage()
-		panic(err)
+		os.Exit(0)
 	}
 
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
 		Usage()
-		panic(err)
+		os.Exit(0)
 	}
 	defer watcher.Close()
 
@@ -77,7 +77,7 @@ func main() {
 		err = watcher.Add(v)
 		if err != nil {
 			Usage()
-			panic(err)
+			os.Exit(0)
 		}
 	}
 
