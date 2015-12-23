@@ -7,10 +7,12 @@ import (
 	"path/filepath"
 )
 
+//从.inotify文件 获取 主文件夹下的指定的文件夹 的所有子文件夹
 func GetDirs(path string) (*[]string, error) {
 	dir := make([]string, 0, 30)
 	var err error
 
+	//没有路径 默认当前目录
 	if path == "" {
 		path, err = filepath.Abs(filepath.Dir(os.Args[0]))
 		if err != nil {
