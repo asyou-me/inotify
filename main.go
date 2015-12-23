@@ -81,8 +81,8 @@ func main() {
 		}
 	}
 
-	<-c
-	fmt.Println(" exit 0")
+	s := <-c
+	fmt.Println(" exit with", s)
 }
 
 func run(shell *string) {
@@ -101,12 +101,12 @@ func run(shell *string) {
 
 	err = cmd.Start()
 	if err != nil {
-		fmt.Println("\033[31;1mError Start for Cmd", err)
+		fmt.Println("\033[31;1mStart for Cmd", err)
 	} else {
 		cmd_chan <- cmd
 	}
 	err = cmd.Wait()
 	if err != nil {
-		fmt.Println("\033[31;1mError Wait for Cmd", err)
+		fmt.Println("\033[31;1mWait for Cmd", err)
 	}
 }
