@@ -45,6 +45,13 @@ func main() {
 	//从.inotify文件 获取 要监听的文件夹下的指定文件夹 的所有子文件夹
 	dirs, err := GetDirs(*path)
 	if err != nil {
+		fmt.Println(err)
+		Usage()
+		os.Exit(0)
+	}
+
+	err = file_path_check(shell)
+	if err != nil {
 		Usage()
 		os.Exit(0)
 	}
