@@ -45,7 +45,7 @@ func GetDirs(path string) (*[]string, error) {
 		}
 	}
 
-	dir = append(dir, path)
+	//dir = append(dir, path)
 
 	return &dir, nil
 }
@@ -62,17 +62,17 @@ func WalkDir(dirPth string, dirs *[]string) (err error) { //忽略后缀匹配�
 }
 
 //转换成绝对路径并验证文件是否存在
-func file_path_check(path *string) error {
-	isrelative := strings.HasSuffix(*path, "/")
-	if !isrelative {
+func file_path_check(path string) error {
+	path = strings.Replace(path, " ", "", -1)
+	if string(path[0]) != "/" {
 		curr_path, err := filepath.Abs(filepath.Dir(os.Args[0]))
 		if err != nil {
 			return err
 		}
-		*path = curr_path + "/" + *path
+		path = curr_path + "/" + path
 	}
 
-	if !Exist(*path) {
+	if !Exist(path) {
 		return errors.New("目标shell文件不存在")
 	}
 	return nil

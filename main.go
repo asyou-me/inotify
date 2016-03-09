@@ -50,8 +50,9 @@ func main() {
 		os.Exit(0)
 	}
 
-	err = file_path_check(shell)
+	err = file_path_check(*shell)
 	if err != nil {
+		fmt.Println(err)
 		Usage()
 		os.Exit(0)
 	}
@@ -59,6 +60,7 @@ func main() {
 	//建立一个监听者
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
+		fmt.Println(err)
 		Usage()
 		os.Exit(0)
 	}
@@ -83,7 +85,7 @@ func main() {
 			}
 
 			//5秒或5秒内修改超过10次，重启进程
-			if run_num > 10 || (run_num > 0 && time.Now().Unix() > last_time+5) {
+			if run_num > 1 || (run_num > 0 && time.Now().Unix() > last_time+60) {
 				run_cmd.Process.Kill()
 				run_num = 0
 				last_time = time.Now().Unix()
@@ -96,6 +98,7 @@ func main() {
 	for _, v := range *dirs {
 		err = watcher.Add(v)
 		if err != nil {
+			fmt.Println(err)
 			Usage()
 			os.Exit(0)
 		}
