@@ -40,6 +40,7 @@ inotify源代码被开放在GitHub
     ```
  
 ### use
+
  - inotify的参数
    - -shell （shell脚本的路径）
    - -path （项目所在的目录）
@@ -56,6 +57,7 @@ inotify源代码被开放在GitHub
     ```
 
 ### Todos
+
  - 使用更少的cpu
  - 暂时有进程sleep的状况
 
