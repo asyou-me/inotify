@@ -18,7 +18,7 @@ inotify源代码被开放在GitHub
 
 二进制安装（linux）:
 
- - ```sh
+    ```sh
     # 获取编译后的二进制可执行文件（linux）
     $ wget https://github.com/asyoume/inotify/releases/download/0.01/inotify
     # 将获取到的二进制文件放到一个可用的PATH目录（例如/usr/bin/inotify）
