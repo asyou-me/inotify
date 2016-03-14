@@ -17,6 +17,7 @@ inotify源代码被开放在GitHub
 ### Installation
 
 二进制安装（linux）:
+
  - ```sh
     # 获取编译后的二进制可执行文件（linux）
     $ wget https://github.com/asyoume/inotify/releases/download/0.01/inotify
@@ -25,6 +26,7 @@ inotify源代码被开放在GitHub
     ```
 
 源码编译（mac/windows/linux）：
+
  - 1.安装golang编译环境（http://golang.org/doc/install）
  - 2.获取项目依赖
     ```sh
