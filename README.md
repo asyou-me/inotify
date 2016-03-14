@@ -29,17 +29,17 @@ inotify源代码被开放在GitHub
 
  - 1.安装golang编译环境（http://golang.org/doc/install）
  - 2.获取项目依赖
-    ```sh
+```sh
     $ go get gopkg.in/fsnotify.v1
-    ```
+```
  - 3.获取项目的源码
-    ```sh
+```sh
     $ go get github.com/asyoume/inotify
-    ```
+```
  - 4.编译项目源码
-    ```sh
+```sh
     $ go install github.com/asyoume/inotify
-    ```
+```
  
 ### use
 
@@ -47,16 +47,16 @@ inotify源代码被开放在GitHub
    - -shell （shell脚本的路径）
    - -path （项目所在的目录）
  - inotify项目所在目录需要创建一个名为 .inotify 的文件，指定需要监控的目录。例如：
-     ```javascript
+```javascript
     [
       "source"
     ]
-    ```
+```
  - 例子
-    ```sh
+```sh
     $ cd "$GOPATH/src/github.com/asyoume/inotify/example"
     $ inotify -shell shell/run.sh
-    ```
+```
 
 ### Todos
 
