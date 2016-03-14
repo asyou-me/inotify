@@ -54,9 +54,8 @@ inotify源代码被开放在GitHub
     $ cd "$GOPATH/src/github.com/asyoume/inotify/example"
     $ inotify -shell shell/run.sh
     ```
-    
-### Todos
 
+### Todos
  - 使用更少的cpu
  - 暂时有进程sleep的状况
 
