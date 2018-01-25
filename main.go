@@ -84,6 +84,7 @@ func main() {
 						lastTime = time.Now().Unix()
 						if runCmd != nil {
 							runCmd.Process.Kill()
+							runCmd = nil
 						}
 						run(shell)
 					}
@@ -93,9 +94,6 @@ func main() {
 				fmt.Println("error:", err)
 			// 执行后回掉 cmd
 			case cmd := <-cmdChan:
-				if runCmd != nil {
-					runCmd.Process.Kill()
-				}
 				lastTime = time.Now().Unix()
 				runCmd = cmd
 			}
