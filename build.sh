@@ -9,5 +9,5 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd  )"
 
 #build
-go build -o "$DIR/main" github.com/asyoume/inotify
-go install github.com/asyoume/inotify
+go build -o "$DIR/main" github.com/asyou-me/inotify
+go install github.com/asyou-me/inotify
